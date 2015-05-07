@@ -268,6 +268,7 @@
     <Content Include="Views\ProjectPage\Details.cshtml" />
     <Content Include="Views\DataFiles\Download.cshtml" />
     <Content Include="Views\DataFiles\Upload.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
