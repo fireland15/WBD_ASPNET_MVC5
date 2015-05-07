@@ -77,12 +77,12 @@ namespace WBD_ASPNET_MVC5.Controllers
                 //return RedirectToAction("Index");
             }
             //return RedirectToAction("Projects", "Accounts");
-            return Download(datafile);
+            return RedirectToAction("Index");
         }
 
-        public FileResult Download(DataFile datafile)
+        public FileResult Download(string fileReference)
         {
-            return File(datafile.FileReference, System.Net.Mime.MediaTypeNames.Application.Octet);
+            return File(fileReference, System.Net.Mime.MediaTypeNames.Application.Octet);
         }
 	}
 }
