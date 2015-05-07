@@ -41,4 +41,10 @@ namespace WBD_ASPNET_MVC5.Models
         public Project project;
         public UserInfo UInfo;
     }
+
+    public class ProjectUserViewModel
+    {
+        public Project project { get; set; }
+        public ApplicationUser user { get; set; }
+    }
 }

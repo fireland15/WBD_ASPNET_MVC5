@@ -3,17 +3,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details for @Html.DisplayFor(Model => Model.ProjectName)</h1>
+<h1>Details for @Html.DisplayFor(model => model.ProjectName)</h1>
 
-<p>Owner: @Html.DisplayFor(Model => Model.OwnerID)</p>
+<p>Owner: @Html.DisplayFor(model => model.OwnerID)</p>
 
 <h2>Brief Description</h2>
 <p>
-    @Html.DisplayFor(Model => Model.BriefDescription)
+    @Html.DisplayFor(model => model.BriefDescription)
 </p>
 
 <h2>Long Description</h2>
 <p>
-    @Html.DisplayFor(Model => Model.LongDescription)
+    @Html.DisplayFor(model => model.LongDescription)
 </p>
 
+<p>
+    @Html.ActionLink("Add New Users to Project", "AddUser", new { id = Model.Id })
+</p>
