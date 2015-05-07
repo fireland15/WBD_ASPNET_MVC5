@@ -1,4 +1,4 @@
-﻿@model WBD_ASPNET_MVC5.Models.ProjectUserViewModel
+﻿@model WBD_ASPNET_MVC5.Models.ProjectUsernameViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -11,12 +11,14 @@
     Enter the new Username
 </h2>
 
-@using (Html.BeginForm("Details", "ProjectPage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
+@Html.HiddenFor(model => model.project.Id)
+
+@using (Html.BeginForm("AddUser", "ProjectPage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{   
     <div class="form-group">
-        @Html.LabelFor(model => model.user.UserName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(model => model.Username, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.user.UserName, new { @class = "form-control" })
+            @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

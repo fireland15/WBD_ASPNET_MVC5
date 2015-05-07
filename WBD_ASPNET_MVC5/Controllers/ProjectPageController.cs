@@ -52,17 +52,24 @@ namespace WBD_ASPNET_MVC5.Controllers
                 return HttpNotFound();
             }
 
-            var model = new ProjectUserViewModel();
-            model.project = project;
+            var model = new ProjectUsernameViewModel();
+            model.projectID = id;
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult AddUser(ProjectUserViewModel m)
+        public ActionResult AddUser(ProjectUsernameViewModel m)
         {
-            if (ModelState.IsValid)
+            if (m.Username != null)
             {
-                //db.Da
+                var UPA = new UserProjectAssociation();
+                UPA.ProjectId = m.projectID;
+                var user = UserManager.FindByName(m.Username);
+                if (user != null)
+                {
+                    UPA.UserId = user.Id;
+                    db.UserProjectAssoc.Add(UPA);
+                }
             }
             return View();
         }

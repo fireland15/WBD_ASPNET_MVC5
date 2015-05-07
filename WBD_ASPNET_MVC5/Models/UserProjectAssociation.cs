@@ -12,7 +12,7 @@ namespace WBD_ASPNET_MVC5.Models
         [Required]
         [Key]
         [Column(Order = 0)]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
 
         [Required]
         [Key]

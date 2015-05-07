@@ -199,6 +199,10 @@
     <Compile Include="Migrations\201505071124000_user-p-assoc.Designer.cs">
       <DependentUpon>201505071124000_user-p-assoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505071132173_user-p-assoc2.cs" />
+    <Compile Include="Migrations\201505071132173_user-p-assoc2.Designer.cs">
+      <DependentUpon>201505071132173_user-p-assoc2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAssociations.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505071124000_user-p-assoc.resx">
       <DependentUpon>201505071124000_user-p-assoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505071132173_user-p-assoc2.resx">
+      <DependentUpon>201505071132173_user-p-assoc2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
