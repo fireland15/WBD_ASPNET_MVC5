@@ -16,6 +16,7 @@ namespace WBD_ASPNET_MVC5.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: /ProjectsAdmin/
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Projects.ToList());
@@ -66,7 +67,7 @@ namespace WBD_ASPNET_MVC5.Controllers
         }
 
         // GET: /ProjectsAdmin/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -85,7 +86,7 @@ namespace WBD_ASPNET_MVC5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,IsDone")] Project project)
+        public ActionResult Edit([Bind(Include="Id,ProjectName,BreifDescription,LongDescription, CreatedOn, OwnerID")] Project project)
         {
             if (ModelState.IsValid)
             {

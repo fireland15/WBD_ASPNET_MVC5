@@ -8,7 +8,7 @@ namespace WBD_ASPNET_MVC5.Models
 {
     public class Project
     {
-        [Required]
+        [Required] 
         public string Id { get; set; }
 
         [Required]

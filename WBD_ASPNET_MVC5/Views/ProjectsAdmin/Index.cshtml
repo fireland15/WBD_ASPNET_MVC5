@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WBD_ASPNET_MVC5.Models.Project>
+﻿@model IEnumerable<WBD_ASPNET_MVC5.Models.Project> 
 
 @{
     ViewBag.Title = "Index";
@@ -6,16 +6,22 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.ProjectName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsDone)
+            @Html.DisplayNameFor(model => model.BriefDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LongDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerID)
         </th>
         <th></th>
     </tr>
@@ -23,10 +29,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.ProjectName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsDone)
+            @Html.DisplayFor(modelItem => item.BriefDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LongDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerID)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
