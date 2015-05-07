@@ -9,6 +9,9 @@ namespace WBD_ASPNET_MVC5.Models
     public class DataProjectAssoc
     {
         [Required]
+        public string ID { get; set; }
+
+        [Required]
         public int DataId { get; set; }
 
         [Required]
@@ -17,6 +20,9 @@ namespace WBD_ASPNET_MVC5.Models
 
     public class DataUserAssoc
     {
+        [Required]
+        public string ID { get; set; }
+
         [Required]
         public int DataId { get; set; }
 

@@ -21,6 +21,9 @@ namespace WBD_ASPNET_MVC5.Models
         public System.Data.Entity.DbSet<WBD_ASPNET_MVC5.Models.Project> Projects { get; set; }
         public System.Data.Entity.DbSet<WBD_ASPNET_MVC5.Models.UserInfo> UserInfos { get; set; }
         public System.Data.Entity.DbSet<WBD_ASPNET_MVC5.Models.DataFile> DataFiles { get; set; }
+        public System.Data.Entity.DbSet<WBD_ASPNET_MVC5.Models.DataProjectAssoc> DataProjectAssociations { get; set; }
+        public System.Data.Entity.DbSet<WBD_ASPNET_MVC5.Models.DataUserAssoc> DataUserAssociations { get; set; }
+
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

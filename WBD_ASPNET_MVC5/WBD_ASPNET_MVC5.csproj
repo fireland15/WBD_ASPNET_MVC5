@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201504232036303_AddDatFiles.Designer.cs">
       <DependentUpon>201504232036303_AddDatFiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505070523125_DataUserProjectAssoc.cs" />
+    <Compile Include="Migrations\201505070523125_DataUserProjectAssoc.Designer.cs">
+      <DependentUpon>201505070523125_DataUserProjectAssoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAssociations.cs" />
@@ -267,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504232036303_AddDatFiles.resx">
       <DependentUpon>201504232036303_AddDatFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505070523125_DataUserProjectAssoc.resx">
+      <DependentUpon>201505070523125_DataUserProjectAssoc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
