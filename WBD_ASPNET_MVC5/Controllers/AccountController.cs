@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using WBD_ASPNET_MVC5.Models;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace WBD_ASPNET_MVC5.Controllers
 {
@@ -83,19 +85,14 @@ namespace WBD_ASPNET_MVC5.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser() { UserName = model.UserName};
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.PhoneNumber = model.PhoneNumber;
+                user.SignUpDate = model.SignUpDate;
                 var result = await UserManager.CreateAsync(user, model.Password);
-                var ui = new UserInfo();
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    ui.UserID = User.Identity.GetUserId();
-                    ui.FirstName = model.FirstName;
-                    ui.LastName = model.LastName;
-                    ui.PhoneNumber = model.PhoneNumber;
-                    ui.SignUpDate = model.SignUpDate;
-                    ui.Id = Guid.NewGuid().ToString();
-                    //db.UserInfos.Add(ui);
-                    //await db.SaveChangesAsync();
                     return RedirectToAction("Index", "Home");
                 }
                 else

@@ -27,7 +27,7 @@ namespace WBD_ASPNET_MVC5.Models
         [Required]
         [StringLength(10)]
         [Display(Name = "Phone Number")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:(###)###-####}")]
+        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:(###)###-####}")]
         public string PhoneNumber { get; set; }
 
         [Required]
