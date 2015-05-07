@@ -1,23 +1,23 @@
 ﻿@model WBD_ASPNET_MVC5.Models.DataFile
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Upload";
 }
 
 <h2>Create</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Upload", "DataFiles", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Project</h4>
+        <h4>File Upload</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.UploadDate)
-
+        @Html.HiddenFor(model => model.FileReference)
         <div class="form-group">
             @Html.LabelFor(model => model.DataName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -44,7 +44,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.FileReference, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" id="Photo" name="upload" />
+                <input type="file" id="file" name="upload" />
             </div>
         </div>
         <div class="form-group">
