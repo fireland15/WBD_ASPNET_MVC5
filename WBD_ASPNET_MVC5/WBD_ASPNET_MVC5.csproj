@@ -182,6 +182,14 @@
     <Compile Include="Migrations\201505070523125_DataUserProjectAssoc.Designer.cs">
       <DependentUpon>201505070523125_DataUserProjectAssoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505070528587_ChangedKey.cs" />
+    <Compile Include="Migrations\201505070528587_ChangedKey.Designer.cs">
+      <DependentUpon>201505070528587_ChangedKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505070530277_ChangedKeyAgain.cs" />
+    <Compile Include="Migrations\201505070530277_ChangedKeyAgain.Designer.cs">
+      <DependentUpon>201505070530277_ChangedKeyAgain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAssociations.cs" />
@@ -274,6 +282,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505070523125_DataUserProjectAssoc.resx">
       <DependentUpon>201505070523125_DataUserProjectAssoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505070528587_ChangedKey.resx">
+      <DependentUpon>201505070528587_ChangedKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505070530277_ChangedKeyAgain.resx">
+      <DependentUpon>201505070530277_ChangedKeyAgain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
