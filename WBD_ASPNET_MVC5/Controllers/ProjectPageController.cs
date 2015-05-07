@@ -59,5 +59,10 @@ namespace WBD_ASPNET_MVC5.Controllers
             model.user = user;
             return View(model);
         }
-	}
+
+        [HttpPost]
+        public ActionResult AddUser(ProjectUserViewModel m)
+        {
+
+        }
 }
