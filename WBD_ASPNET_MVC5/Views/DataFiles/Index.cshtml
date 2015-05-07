@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WBD_ASPNET_MVC5.Models.DataFile>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Upload", "Upload")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataCategory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>               
+                @Html.DisplayFor(modelItem => item.DataName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDate)
+            </td>
+        </tr>
+    }
+
+</table>
+

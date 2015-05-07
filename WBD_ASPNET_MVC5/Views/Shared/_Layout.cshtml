@@ -24,7 +24,7 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Project", "Index", "Project")</li>
-                    <li>@Html.ActionLink("Files", "Upload", "DataFiles")</li>
+                    <li>@Html.ActionLink("Files", "Index", "DataFiles")</li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Admin Projects", "Index", "ProjectsAdmin")</li>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -13,6 +15,28 @@ namespace WBD_ASPNET_MVC5.Controllers
     {
 
         private ApplicationDbContext db = new ApplicationDbContext();
+        private UserManager<ApplicationUser> UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+
+        public DataFilesController()
+            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+        {
+        }
+
+        public DataFilesController(UserManager<ApplicationUser> userManager)
+        {
+            UserManager = userManager;
+        }
+
+        public ActionResult Index()
+        {
+            var uID = User.Identity.GetUserId();
+            if (uID != null)
+            {
+                var fileList = db.DataFiles.ToList().Where(datafile => datafile.UploaderID == uID);
+                return View(fileList);
+            }
+            return RedirectToAction("Login", "Account");
+        }
 
         public ActionResult Upload() 
         {
@@ -20,6 +44,7 @@ namespace WBD_ASPNET_MVC5.Controllers
             data.Id = Guid.NewGuid().ToString();
             data.UploadDate = DateTime.Now;
             data.FileReference = "aasdasda";
+            data.UploaderID = User.Identity.GetUserId();
             return View(data);
         }
 
@@ -27,7 +52,7 @@ namespace WBD_ASPNET_MVC5.Controllers
         // POST: /DataFiles/
         [HttpPost]
         //public async Task<ActionResult> Index([Bind(Include = "Id,DataName,FileReference,DataCategory,Description,UploadDate")]DataFile datafile, HttpPostedFileBase upload)
-        public ActionResult Upload([Bind(Include = "Id,DataName,FileReference,DataCategory,Description,UploadDate")]DataFile datafile, HttpPostedFileBase upload)
+        public ActionResult Upload([Bind(Include = "Id,DataName,FileReference,DataCategory,Description,UploadDate,UploaderID")]DataFile datafile, HttpPostedFileBase upload)
         {    
             if (ModelState.IsValid)
             {
@@ -43,8 +68,8 @@ namespace WBD_ASPNET_MVC5.Controllers
                     byte[] filebytes = new byte[upload.ContentLength];
                     //upload.InputStream.Read(filebytes, 0, Convert.ToInt32(upload.ContentLength));
                     //System.IO.File.WriteAllBytes("c:/users/i7/desktop/test.jpeg", filebytes);
-                    upload.SaveAs("C:/Users/Forrest/Desktop/ " + FileName);
-                    datafile.FileReference = "C:/Users/Forrest/Desktop/ " + FileName;
+                    upload.SaveAs(Server.MapPath("~").ToString() + "/FILES/" + FileName);
+                    datafile.FileReference = Server.MapPath("~").ToString() + "/FILES/" + FileName;
                 }
                 //db.DataFiles.Add(DataFile)
                 db.DataFiles.Add(datafile);
