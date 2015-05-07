@@ -37,5 +37,8 @@ namespace WBD_ASPNET_MVC5.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         [DataType(DataType.DateTime)]
         public DateTime UploadDate { get; set; }
+
+        [Required]
+        public string UploaderID { get; set; }
     }
 }

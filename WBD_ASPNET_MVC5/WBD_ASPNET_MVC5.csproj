@@ -167,41 +167,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504232009076_CreateDB.cs" />
-    <Compile Include="Migrations\201504232009076_CreateDB.Designer.cs">
-      <DependentUpon>201504232009076_CreateDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504232010046_AddUserInfo.cs" />
-    <Compile Include="Migrations\201504232010046_AddUserInfo.Designer.cs">
-      <DependentUpon>201504232010046_AddUserInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504232036303_AddDatFiles.cs" />
-    <Compile Include="Migrations\201504232036303_AddDatFiles.Designer.cs">
-      <DependentUpon>201504232036303_AddDatFiles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505070523125_DataUserProjectAssoc.cs" />
-    <Compile Include="Migrations\201505070523125_DataUserProjectAssoc.Designer.cs">
-      <DependentUpon>201505070523125_DataUserProjectAssoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505070528587_ChangedKey.cs" />
-    <Compile Include="Migrations\201505070528587_ChangedKey.Designer.cs">
-      <DependentUpon>201505070528587_ChangedKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505070530277_ChangedKeyAgain.cs" />
-    <Compile Include="Migrations\201505070530277_ChangedKeyAgain.Designer.cs">
-      <DependentUpon>201505070530277_ChangedKeyAgain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505070646298_ChangerdUserInfoLocation.cs" />
-    <Compile Include="Migrations\201505070646298_ChangerdUserInfoLocation.Designer.cs">
-      <DependentUpon>201505070646298_ChangerdUserInfoLocation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505071124000_user-p-assoc.cs" />
-    <Compile Include="Migrations\201505071124000_user-p-assoc.Designer.cs">
-      <DependentUpon>201505071124000_user-p-assoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505071132173_user-p-assoc2.cs" />
-    <Compile Include="Migrations\201505071132173_user-p-assoc2.Designer.cs">
-      <DependentUpon>201505071132173_user-p-assoc2.cs</DependentUpon>
+    <Compile Include="Migrations\201505072017330_dbInit.cs" />
+    <Compile Include="Migrations\201505072017330_dbInit.Designer.cs">
+      <DependentUpon>201505072017330_dbInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -288,35 +256,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504232009076_CreateDB.resx">
-      <DependentUpon>201504232009076_CreateDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504232010046_AddUserInfo.resx">
-      <DependentUpon>201504232010046_AddUserInfo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504232036303_AddDatFiles.resx">
-      <DependentUpon>201504232036303_AddDatFiles.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505070523125_DataUserProjectAssoc.resx">
-      <DependentUpon>201505070523125_DataUserProjectAssoc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505070528587_ChangedKey.resx">
-      <DependentUpon>201505070528587_ChangedKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505070530277_ChangedKeyAgain.resx">
-      <DependentUpon>201505070530277_ChangedKeyAgain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505070646298_ChangerdUserInfoLocation.resx">
-      <DependentUpon>201505070646298_ChangerdUserInfoLocation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505071124000_user-p-assoc.resx">
-      <DependentUpon>201505071124000_user-p-assoc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505071132173_user-p-assoc2.resx">
-      <DependentUpon>201505071132173_user-p-assoc2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505072017330_dbInit.resx">
+      <DependentUpon>201505072017330_dbInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

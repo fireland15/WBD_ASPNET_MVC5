@@ -7,13 +7,13 @@ namespace WBD_ASPNET_MVC5.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class userpassoc2 : IMigrationMetadata
+    public sealed partial class dbInit : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(userpassoc2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(dbInit));
         
         string IMigrationMetadata.Id
         {
-            get { return "201505071132173_user-p-assoc2"; }
+            get { return "201505072017330_dbInit"; }
         }
         
         string IMigrationMetadata.Source

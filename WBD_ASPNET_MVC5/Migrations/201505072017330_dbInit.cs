@@ -3,10 +3,42 @@ namespace WBD_ASPNET_MVC5.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDB : DbMigration
+    public partial class dbInit : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.DataFiles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        DataName = c.String(nullable: false, maxLength: 100),
+                        FileReference = c.String(nullable: false, maxLength: 100),
+                        DataCategory = c.String(nullable: false, maxLength: 100),
+                        Description = c.String(maxLength: 140),
+                        UploadDate = c.DateTime(nullable: false),
+                        UploaderID = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.DataProjectAssocs",
+                c => new
+                    {
+                        DataId = c.Int(nullable: false),
+                        ProjectId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.DataId, t.ProjectId });
+            
+            CreateTable(
+                "dbo.DataUserAssocs",
+                c => new
+                    {
+                        DataId = c.Int(nullable: false),
+                        UserId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.DataId, t.UserId });
+            
             CreateTable(
                 "dbo.Projects",
                 c => new
@@ -30,6 +62,28 @@ namespace WBD_ASPNET_MVC5.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.UserInfoes",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        UserID = c.String(nullable: false),
+                        FirstName = c.String(nullable: false, maxLength: 100),
+                        LastName = c.String(nullable: false, maxLength: 100),
+                        PhoneNumber = c.String(nullable: false, maxLength: 10),
+                        SignUpDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.UserProjectAssociations",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        ProjectId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.ProjectId });
+            
+            CreateTable(
                 "dbo.AspNetUsers",
                 c => new
                     {
@@ -37,6 +91,10 @@ namespace WBD_ASPNET_MVC5.Migrations
                         UserName = c.String(),
                         PasswordHash = c.String(),
                         SecurityStamp = c.String(),
+                        FirstName = c.String(maxLength: 100),
+                        LastName = c.String(maxLength: 100),
+                        PhoneNumber = c.String(maxLength: 10),
+                        SignUpDate = c.DateTime(),
                         Discriminator = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id);
@@ -95,8 +153,13 @@ namespace WBD_ASPNET_MVC5.Migrations
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.UserProjectAssociations");
+            DropTable("dbo.UserInfoes");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Projects");
+            DropTable("dbo.DataUserAssocs");
+            DropTable("dbo.DataProjectAssocs");
+            DropTable("dbo.DataFiles");
         }
     }
 }
