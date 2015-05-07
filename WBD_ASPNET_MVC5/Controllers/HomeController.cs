@@ -15,14 +15,14 @@ namespace WBD_ASPNET_MVC5.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            //ViewBag.Message = "Meet The Team";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Get in touch with us!";
 
             return View();
         }
