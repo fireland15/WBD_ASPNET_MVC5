@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DataFilesController.cs" />
     <Compile Include="Controllers\ProjectPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -265,6 +266,8 @@
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\ProjectPage\AddUser.cshtml" />
     <Content Include="Views\ProjectPage\Details.cshtml" />
+    <Content Include="Views\DataFiles\Download.cshtml" />
+    <Content Include="Views\DataFiles\Upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
