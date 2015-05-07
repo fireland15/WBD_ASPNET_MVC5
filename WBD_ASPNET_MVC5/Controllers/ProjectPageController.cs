@@ -31,12 +31,15 @@ namespace WBD_ASPNET_MVC5.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
-            if (project == null)
+            var puVM = new ProjectUserViewModel();
+            puVM.project = db.Projects.Find(id);
+            if (puVM.project == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            puVM.user = UserManager.FindById(puVM.project.OwnerID);
+
+            return View(puVM);
         }
         //
         // GET: /AddUserToProject/
@@ -46,7 +49,7 @@ namespace WBD_ASPNET_MVC5.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = db.Projects.Find(id);
+            var project = db.Projects.Find(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -54,24 +57,26 @@ namespace WBD_ASPNET_MVC5.Controllers
 
             var model = new ProjectUsernameViewModel();
             model.projectID = id;
+            model.projectName = project.ProjectName;
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult AddUser(ProjectUsernameViewModel m)
-        {
-            if (m.Username != null)
+        public ActionResult AddUser([Bind(Include="projectID,projectName,Username")]ProjectUsernameViewModel model)
+         {
+            if (model.Username != null)
             {
                 var UPA = new UserProjectAssociation();
-                UPA.ProjectId = m.projectID;
-                var user = UserManager.FindByName(m.Username);
+                UPA.ProjectId = model.projectID;
+                var user = UserManager.FindByName(model.Username);
                 if (user != null)
                 {
                     UPA.UserId = user.Id;
                     db.UserProjectAssoc.Add(UPA);
+                    db.SaveChanges();
                 }
             }
-            return View();
+            return RedirectToAction("Details", "ProjectPage", new { id = model.projectID });
         }
     }
 }

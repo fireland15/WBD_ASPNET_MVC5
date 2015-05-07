@@ -1,22 +1,22 @@
-﻿@model WBD_ASPNET_MVC5.Models.Project
+﻿@model WBD_ASPNET_MVC5.Models.ProjectUserViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details for @Html.DisplayFor(model => model.ProjectName)</h1>
+<h1>Details for @Html.DisplayFor(model => model.project.ProjectName)</h1>
 
-<p>Owner: @Html.DisplayFor(model => model.OwnerID)</p>
+<p>Owner: @Html.DisplayFor(model => model.user.UserName)</p>
 
 <h2>Brief Description</h2>
 <p>
-    @Html.DisplayFor(model => model.BriefDescription)
+    @Html.DisplayFor(model => model.project.BriefDescription)
 </p>
 
 <h2>Long Description</h2>
 <p>
-    @Html.DisplayFor(model => model.LongDescription)
+    @Html.DisplayFor(model => model.project.LongDescription)
 </p>
 
 <p>
-    @Html.ActionLink("Add New Users to Project", "AddUser", new { id = Model.Id })
+    @Html.ActionLink("Add New Users to Project", "AddUser", new { id = Model.project.Id })
 </p>
