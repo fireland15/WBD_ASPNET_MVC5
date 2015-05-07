@@ -43,8 +43,8 @@ namespace WBD_ASPNET_MVC5.Controllers
                     byte[] filebytes = new byte[upload.ContentLength];
                     //upload.InputStream.Read(filebytes, 0, Convert.ToInt32(upload.ContentLength));
                     //System.IO.File.WriteAllBytes("c:/users/i7/desktop/test.jpeg", filebytes);
-                    upload.SaveAs("C:/Users/Forrest/Desktop/ " + FileName);
-                    datafile.FileReference = "C:/Users/Forrest/Desktop/ " + FileName;
+                    upload.SaveAs("C:/Users/i7/Desktop/ " + FileName);
+                    datafile.FileReference = "C:/Users/i7/Desktop/ " + FileName;
                 }
                 //db.DataFiles.Add(DataFile)
                 db.DataFiles.Add(datafile);
