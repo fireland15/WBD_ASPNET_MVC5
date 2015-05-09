@@ -18,5 +18,8 @@ namespace WBD_ASPNET_MVC5.Models
         [Key]
         [Column(Order = 1)]
         public string ProjectId { get; set; }
+
+        [Required]
+        public DateTime DateAdded { get; set; }
     }
 }

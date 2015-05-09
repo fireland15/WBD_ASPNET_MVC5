@@ -171,6 +171,10 @@
     <Compile Include="Migrations\201505072017330_dbInit.Designer.cs">
       <DependentUpon>201505072017330_dbInit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505092214174_AddedDatesToUPA.cs" />
+    <Compile Include="Migrations\201505092214174_AddedDatesToUPA.Designer.cs">
+      <DependentUpon>201505092214174_AddedDatesToUPA.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DataAssociations.cs" />
@@ -260,6 +264,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201505072017330_dbInit.resx">
       <DependentUpon>201505072017330_dbInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505092214174_AddedDatesToUPA.resx">
+      <DependentUpon>201505092214174_AddedDatesToUPA.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

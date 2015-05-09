@@ -57,8 +57,11 @@ namespace WBD_ASPNET_MVC5.Models
 
     public class ProjectUsersListViewModel
     {
-        public Project project { get; set; }
+        public string ProjectId { get; set; }
+        public string Username { get; set; }
 
-        public List<ApplicationUser> users { get; set; }
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime AddedOn { get; set; }
     }
 }

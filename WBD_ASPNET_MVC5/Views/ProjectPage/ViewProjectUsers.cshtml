@@ -1,4 +1,4 @@
-﻿@model WBD_ASPNET_MVC5.Models.ProjectUsersListViewModel
+﻿@model IEnumerable<WBD_ASPNET_MVC5.Models.ProjectUsersListViewModel>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,20 +6,28 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add User", "AddUser", "ProjectPage", new {id = Model.project.Id}, null)
+    @Html.ActionLink("Add User", "AddUser", "ProjectPage", new {id = Model.First().ProjectId}, null)
 </p>
 <table class="table">
     <tr>
         <th>
             Username
         </th>
+        <th>
+            On Project Since
+        </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model.users)
+    @foreach (var item in Model)
     {
         <tr>
-            @Html.DisplayFor(modelItem => item.UserName)
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddedOn)
+            </td>
         </tr>
     }
 

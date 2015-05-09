@@ -84,6 +84,7 @@ namespace WBD_ASPNET_MVC5.Controllers
                         return View(model);
                     }
                     UPA.UserId = user.Id;
+                    UPA.DateAdded = DateTime.Today;
                     db.UserProjectAssoc.Add(UPA);
                     db.SaveChanges();
                 }
@@ -94,17 +95,22 @@ namespace WBD_ASPNET_MVC5.Controllers
         public ActionResult ViewProjectUsers(string id)
         {
             var UserList = db.UserProjectAssoc.ToList().Where(entry => entry.ProjectId == id);
-            List<ApplicationUser> users = new List<ApplicationUser>();
+            List<ProjectUsersListViewModel> PUVM = new List<ProjectUsersListViewModel>();
             foreach (var entry in UserList)
             {
-                users.Add(UserManager.FindById(entry.UserId));
+                var p = new ProjectUsersListViewModel();
+                p.ProjectId = id;
+                p.Username = UserManager.FindById(entry.UserId).UserName;
+                p.AddedOn = db.UserProjectAssoc.Find(entry.UserId, id).DateAdded;
+                PUVM.Add(p);
             }
 
-            var PUlist = new ProjectUsersListViewModel();
-            PUlist.project = db.Projects.Find(id);
-            PUlist.users = users;
-                
-            return View(PUlist);
+            if (!UserList.Any())
+            {
+                return RedirectToAction("Details", "ProjectPage", new { id = id });
+            }
+
+            return View(PUVM);
         }
     }
 }
