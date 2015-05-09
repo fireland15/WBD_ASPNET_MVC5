@@ -15,6 +15,7 @@
 {   
     @Html.HiddenFor(model => model.projectID)
     @Html.HiddenFor(model => model.projectName)
+    <p>@ViewBag.error</p>
     <div class="form-group">
         @Html.LabelFor(model => model.Username, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">

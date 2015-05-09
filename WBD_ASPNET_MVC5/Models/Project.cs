@@ -45,7 +45,7 @@ namespace WBD_ASPNET_MVC5.Models
     public class ProjectUserViewModel
     {
         public Project project { get; set; }
-        public ApplicationUser user { get; set; }
+        public string OwnerFirstLastName { get; set; }
     }
 
     public class ProjectUsernameViewModel
@@ -54,4 +54,6 @@ namespace WBD_ASPNET_MVC5.Models
         public string projectName { get; set; }
         public string Username { get; set; }    
     }
+
+
 }

@@ -37,7 +37,8 @@ namespace WBD_ASPNET_MVC5.Controllers
             {
                 return HttpNotFound();
             }
-            puVM.user = UserManager.FindById(puVM.project.OwnerID);
+            var user = UserManager.FindById(puVM.project.OwnerID);
+            puVM.OwnerFirstLastName = user.FirstName + " " + user.LastName;
 
             return View(puVM);
         }
@@ -69,8 +70,19 @@ namespace WBD_ASPNET_MVC5.Controllers
                 var UPA = new UserProjectAssociation();
                 UPA.ProjectId = model.projectID;
                 var user = UserManager.FindByName(model.Username);
+                if (user == null)
+                {
+                    ViewBag.error = "Username does not exist.";
+                    return View(model);
+                }
                 if (user != null)
                 {
+                    var exists = db.UserProjectAssoc.Find(user.Id, model.projectID);
+                    if (exists != null)
+                    {
+                        ViewBag.error = "User is already a part of the project.";
+                        return View(model);
+                    }
                     UPA.UserId = user.Id;
                     db.UserProjectAssoc.Add(UPA);
                     db.SaveChanges();
