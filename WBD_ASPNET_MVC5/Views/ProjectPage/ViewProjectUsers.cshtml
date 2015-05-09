@@ -6,7 +6,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add User", "ProjectPage", "AddUser", new { id = Model.project.ID }, null)
+    @Html.ActionLink("Add User", "AddUser", "ProjectPage", new {id = Model.project.Id}, null)
 </p>
 <table class="table">
     <tr>
@@ -19,9 +19,7 @@
     @foreach (var item in Model.users)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
+            @Html.DisplayFor(modelItem => item.UserName)
         </tr>
     }
 
