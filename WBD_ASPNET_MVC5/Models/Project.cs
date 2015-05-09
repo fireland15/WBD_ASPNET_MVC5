@@ -55,5 +55,10 @@ namespace WBD_ASPNET_MVC5.Models
         public string Username { get; set; }    
     }
 
+    public class ProjectUsersListViewModel
+    {
+        public Project project { get; set; }
 
+        public List<ApplicationUser> users { get; set; }
+    }
 }

@@ -64,7 +64,7 @@ namespace WBD_ASPNET_MVC5.Controllers
 
         [HttpPost]
         public ActionResult AddUser([Bind(Include="projectID,projectName,Username")]ProjectUsernameViewModel model)
-         {
+        {
             if (model.Username != null)
             {
                 var UPA = new UserProjectAssociation();
@@ -89,6 +89,22 @@ namespace WBD_ASPNET_MVC5.Controllers
                 }
             }
             return RedirectToAction("Details", "ProjectPage", new { id = model.projectID });
+        }
+
+        public ActionResult ViewProjectUsers(string id)
+        {
+            var UserList = db.UserProjectAssoc.ToList().Where(entry => entry.ProjectId == id);
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            foreach (var entry in UserList)
+            {
+                users.Add(UserManager.FindById(entry.UserId));
+            }
+
+            var PUlist = new ProjectUsersListViewModel();
+            PUlist.project = db.Projects.Find(id);
+            PUlist.users = users;
+                
+            return View(PUlist);
         }
     }
 }

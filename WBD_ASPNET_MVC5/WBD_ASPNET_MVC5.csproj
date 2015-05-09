@@ -242,6 +242,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\DataFiles\Index.cshtml" />
+    <Content Include="Views\ProjectPage\ViewProjectUsers.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
