@@ -160,6 +160,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DataFilesController.cs" />
+    <Compile Include="Controllers\JavaController.cs" />
     <Compile Include="Controllers\ProjectPageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
@@ -247,6 +248,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\DataFiles\Index.cshtml" />
     <Content Include="Views\ProjectPage\ViewProjectUsers.cshtml" />
+    <Content Include="Views\Java\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
