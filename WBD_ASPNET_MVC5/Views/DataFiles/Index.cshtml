@@ -41,7 +41,10 @@
                 @Html.DisplayFor(modelItem => item.UploadDate)
             </td>
             <td>
-                @Html.ActionLink("Download", "Download", new { fileReference = item.FileReference })
+                @Html.ActionLink("Download", "Download", new { fileId = item.Id })
+            </td>
+            <td>
+                @Html.ActionLink("Delete Me", "Delete", new { fileId = item.Id })
             </td>
         </tr>
     }

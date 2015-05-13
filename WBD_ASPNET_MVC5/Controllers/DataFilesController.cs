@@ -80,9 +80,19 @@ namespace WBD_ASPNET_MVC5.Controllers
             return RedirectToAction("Index");
         }
 
-        public FileResult Download(string fileReference)
+        public ActionResult Delete(string fileId)
         {
-            return File(fileReference, System.Net.Mime.MediaTypeNames.Application.Octet);
+            DataFile df = db.DataFiles.Find(fileId);
+            db.DataFiles.Remove(df);
+            db.SaveChanges();
+            System.IO.File.Delete(df.FileReference);
+            return RedirectToAction("Index");
+        }
+
+        public FileResult Download(string fileId)
+        {
+            var file = db.DataFiles.Find(fileId);
+            return File(file.FileReference, System.IO.Path.GetExtension(file.FileReference).ToLower(), file.DataName + System.IO.Path.GetExtension(file.FileReference).ToLower());
         }
 	}
 }
