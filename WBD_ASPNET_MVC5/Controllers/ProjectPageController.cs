@@ -89,7 +89,7 @@ namespace WBD_ASPNET_MVC5.Controllers
                     db.SaveChanges();
                 }
             }
-            return RedirectToAction("Details", "ProjectPage", new { id = model.projectID });
+            return RedirectToAction("ViewProjectUsers", "ProjectPage", new { id = model.projectID });
         }
 
         public ActionResult ViewProjectUsers(string id)
