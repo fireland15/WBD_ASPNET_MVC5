@@ -34,7 +34,7 @@ namespace WBD_ASPNET_MVC5.Controllers
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
                 ViewBag.user = user;
-                var projectList = db.Projects.ToList().Where(project => project.OwnerID == user.Id);
+                var projectList = db.Projects.ToList().Where(project => project.OwnerID == User.Identity.GetUserId());
                 return View(projectList);
             }
             return RedirectToAction("Login", "Account");         
