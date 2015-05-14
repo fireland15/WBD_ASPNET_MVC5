@@ -72,6 +72,7 @@ namespace WBD_ASPNET_MVC5.Migrations
                     Description = "16s DNA sequence of sample Columbia M23",
                     // Just make up names for the files, and create an actual copy of the file, we need them on the server
                     FileReference = "C:/Users/Columbia_M23_16s.fasta",
+                    ImageReference = "/FILES/image.jpg",
                     UploadDate = DateTime.Parse("2009-05-20T09:30:41"),
                     UploaderID = userManager.FindByName("mark").Id
                 }
