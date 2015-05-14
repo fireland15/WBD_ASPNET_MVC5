@@ -168,13 +168,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201505072017330_dbInit.cs" />
-    <Compile Include="Migrations\201505072017330_dbInit.Designer.cs">
-      <DependentUpon>201505072017330_dbInit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505092214174_AddedDatesToUPA.cs" />
-    <Compile Include="Migrations\201505092214174_AddedDatesToUPA.Designer.cs">
-      <DependentUpon>201505092214174_AddedDatesToUPA.cs</DependentUpon>
+    <Compile Include="Migrations\201505140002371_DB_Init.cs" />
+    <Compile Include="Migrations\201505140002371_DB_Init.Designer.cs">
+      <DependentUpon>201505140002371_DB_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -249,6 +245,8 @@
     <Content Include="Views\DataFiles\Index.cshtml" />
     <Content Include="Views\ProjectPage\ViewProjectUsers.cshtml" />
     <Content Include="Views\Java\Index.cshtml" />
+    <Content Include="Views\ProjectPage\AddData.cshtml" />
+    <Content Include="Views\ProjectPage\ViewProjectData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -264,11 +262,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505072017330_dbInit.resx">
-      <DependentUpon>201505072017330_dbInit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505092214174_AddedDatesToUPA.resx">
-      <DependentUpon>201505092214174_AddedDatesToUPA.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505140002371_DB_Init.resx">
+      <DependentUpon>201505140002371_DB_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

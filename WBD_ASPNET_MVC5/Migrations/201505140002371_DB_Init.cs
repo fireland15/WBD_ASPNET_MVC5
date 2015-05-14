@@ -3,7 +3,7 @@ namespace WBD_ASPNET_MVC5.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class dbInit : DbMigration
+    public partial class DB_Init : DbMigration
     {
         public override void Up()
         {
@@ -25,7 +25,7 @@ namespace WBD_ASPNET_MVC5.Migrations
                 "dbo.DataProjectAssocs",
                 c => new
                     {
-                        DataId = c.Int(nullable: false),
+                        DataId = c.String(nullable: false, maxLength: 128),
                         ProjectId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.DataId, t.ProjectId });
@@ -34,7 +34,7 @@ namespace WBD_ASPNET_MVC5.Migrations
                 "dbo.DataUserAssocs",
                 c => new
                     {
-                        DataId = c.Int(nullable: false),
+                        DataId = c.String(nullable: false, maxLength: 128),
                         UserId = c.String(nullable: false, maxLength: 128),
                     })
                 .PrimaryKey(t => new { t.DataId, t.UserId });
@@ -80,6 +80,7 @@ namespace WBD_ASPNET_MVC5.Migrations
                     {
                         UserId = c.String(nullable: false, maxLength: 128),
                         ProjectId = c.String(nullable: false, maxLength: 128),
+                        DateAdded = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => new { t.UserId, t.ProjectId });
             
