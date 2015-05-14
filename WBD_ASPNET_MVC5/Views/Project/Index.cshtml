@@ -20,9 +20,6 @@
         <th>
             @Html.DisplayNameFor(model => model.CreatedOn)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.OwnerID)
-        </th>
         <th></th>
     </tr>
 
@@ -38,11 +35,8 @@
             @Html.DisplayFor(modelItem => item.CreatedOn)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.OwnerID)
-        </td>
-        <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", "ProjectPage", new {id = item.Id}, null) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

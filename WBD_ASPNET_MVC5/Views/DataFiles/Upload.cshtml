@@ -30,7 +30,13 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DataCategory, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DataCategory)
+                @Html.DropDownListFor(model => model.DataCategory, new List<SelectListItem> 
+                   { new SelectListItem{Text="DNA sequence"},
+                     new SelectListItem{Text="RNA sequence"},
+                     new SelectListItem{Text="Multiple Sequence Alignment"},
+                     new SelectListItem{Text="Gel Image"},
+                     new SelectListItem{Text="other"},
+                   }) 
                 @Html.ValidationMessageFor(model => model.DataCategory)
             </div>
         </div>

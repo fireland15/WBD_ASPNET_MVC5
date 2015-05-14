@@ -34,7 +34,7 @@ namespace WBD_ASPNET_MVC5.Controllers
             {
                 var user = UserManager.FindById(User.Identity.GetUserId());
                 ViewBag.user = user;
-                var projectList = db.Projects.ToList().Where(project => project.OwnerID == user.Id);
+                var projectList = db.Projects.ToList().Where(project => project.OwnerID == User.Identity.GetUserId());
                 return View(projectList);
             }
             return RedirectToAction("Login", "Account");         
@@ -62,6 +62,14 @@ namespace WBD_ASPNET_MVC5.Controllers
             project.Id = Guid.NewGuid().ToString();
             project.CreatedOn = DateTime.Now;
             project.OwnerID = User.Identity.GetUserId();
+            
+            var UPA = new UserProjectAssociation();
+            UPA.ProjectId = project.Id;
+            UPA.UserId = project.OwnerID;
+            UPA.DateAdded = project.CreatedOn;
+            db.UserProjectAssoc.Add(UPA);
+            db.SaveChanges();
+            
             return View(project);
         }
 

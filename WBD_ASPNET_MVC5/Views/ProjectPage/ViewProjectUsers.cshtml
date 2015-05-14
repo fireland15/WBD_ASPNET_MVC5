@@ -6,7 +6,8 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Add User", "AddUser", "ProjectPage", new {id = Model.First().ProjectId}, null)
+    @Html.ActionLink("Add User", "AddUser", "ProjectPage", new {id = Model.First().ProjectId}, null) |
+    @Html.ActionLink("Project Details", "Details", "ProjectPage", new { id = Model.First().ProjectId }, null)
 </p>
 <table class="table">
     <tr>

@@ -13,10 +13,29 @@
 </p>
 
 <h2>Long Description</h2>
-<p>
+<div class="CommentP" style="width:500px;">
     @Html.DisplayFor(model => model.project.LongDescription)
-</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>Project Members</h3>
+        <p>
+            @{
+                string MembersURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/ProjectPage/ViewProjectUsers/" + Model.project.Id;
+            }
+            <p><a class="btn btn-default" href=@MembersURL>View All &raquo;</a></p>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h3>Project Files</h3>
+        @{
+            string DataURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/ProjectPage/AddData/" + Model.project.Id;
+        }
+        <p><a class="btn btn-default" href=@DataURL>View All &raquo;</a></p>
+    </div>
+</div>
 
 <p>
-    @Html.ActionLink("View the members of this project", "ViewProjectUsers", new { id = Model.project.Id })
+    @Html.ActionLink("Return to Projects", "Index", "Project")
 </p>

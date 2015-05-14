@@ -1,0 +1,59 @@
+﻿@model List<WBD_ASPNET_MVC5.Models.DataProjectListViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>
+    Add Data To 
+</h1>
+
+<h2>
+    Check to Add to Project
+</h2>
+
+@using (Html.BeginForm("AddData", "ProjectPage", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table class="table">
+        <tr>
+            <th>
+                Add?
+            </th>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("Data Type")
+            </th>
+            <th>
+                @Html.DisplayName("Description")
+            </th>
+            <th>
+                @Html.DisplayName("Upload Date")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            @Html.HiddenFor(modelItem => item.project.Id)
+            <tr>
+                <td>
+                    @Html.CheckBoxFor(modelItem => item.data.AddToProject, new { @checked = true })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data.datafile.DataName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data.datafile.DataCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data.datafile.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data.datafile.UploadDate)
+                </td>
+            </tr>
+        }
+    </table>
+<input type="submit" class="btn btn-default" value="Add Files" />
+}
