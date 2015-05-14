@@ -1,58 +1,59 @@
-﻿@model List<WBD_ASPNET_MVC5.Models.DataProjectListViewModel>
+﻿@model WBD_ASPNET_MVC5.Models.DataProjectListViewModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>
-    Add Data To 
+    Add Data To @Html.DisplayFor(model => model.project.ProjectName)
 </h1>
 
-<h2>
-    Check to Add to Project
-</h2>
+<p>
+    @Html.ActionLink("View Data List", "ViewProjectData", "ProjectPage", new { id = Model.project.Id }, null) | 
+    @Html.ActionLink("Project Details", "Details", "ProjectPage", new { id = Model.project.Id }, null)
+</p>
 
-@using (Html.BeginForm("AddData", "ProjectPage", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <table class="table">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Data Type")
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Upload Date")
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model.data)
+    {
+        @Html.HiddenFor(model => model.project.Id)
         <tr>
-            <th>
-                @Html.DisplayName("Name")
-            </th>
-            <th>
-                @Html.DisplayName("Data Type")
-            </th>
-            <th>
-                @Html.DisplayName("Description")
-            </th>
-            <th>
-                @Html.DisplayName("Upload Date")
-            </th>
-            <th>
-
-            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDate)
+            </td>
+            <td>
+                @Html.ActionLink("Add", "LinkDataToProject", new { id = Model.project.Id, dataid = item.Id })
+            </td>
         </tr>
+    }
+</table>
 
-        @foreach (var item in Model)
-        {
-            @Html.HiddenFor(modelItem => item.project.Id)
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.data.DataName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.data.DataCategory)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.data.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.data.UploadDate)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-                </td>
-            </tr>
-        }
-    </table>
-<input type="submit" class="btn btn-default" value="Add Files" />
-}
+<p>
+    @ViewBag.EmptyModel
+</p>

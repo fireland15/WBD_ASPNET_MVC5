@@ -42,6 +42,6 @@ namespace WBD_ASPNET_MVC5.Models
     public class DataProjectListViewModel
     {
         public Project project { get; set; }
-        public DataFile data { get; set; }
+        public List<DataFile> data { get; set; }
     }
 }

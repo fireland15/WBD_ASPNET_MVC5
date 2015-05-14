@@ -1,5 +1,56 @@
-﻿@{
+﻿@model WBD_ASPNET_MVC5.Models.DataProjectListViewModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h1>
+     @Html.DisplayFor(model => model.project.ProjectName) Data Files
+</h1>
 
+<p>
+    @Html.ActionLink("Add New Data", "AddData", "ProjectPage", new { id = Model.project.Id }, null) |
+    @Html.ActionLink("Project Details", "Details", "ProjectPage", new { id = Model.project.Id }, null)
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Name")
+        </th>
+        <th>
+            @Html.DisplayName("Data Type")
+        </th>
+        <th>
+            @Html.DisplayName("Description")
+        </th>
+        <th>
+            @Html.DisplayName("Upload Date")
+        </th>
+        <th>
+
+        </th>
+    </tr>
+
+    @foreach (var item in Model.data)
+    {
+        @Html.HiddenFor(model => model.project.Id)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCategory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDate)
+            </td>
+            <td>
+                @Html.ActionLink("Download", "Download", "DataFiles", new { fileId = item.Id }, null)
+            </td>
+
+        </tr>
+    }
+</table>

@@ -30,7 +30,7 @@
     <div class="col-md-4">
         <h3>Project Files</h3>
         @{
-            string DataURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/ProjectPage/AddData/" + Model.project.Id;
+            string DataURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/ProjectPage/ViewProjectData/" + Model.project.Id;
         }
         <p><a class="btn btn-default" href=@DataURL>View All &raquo;</a></p>
     </div>

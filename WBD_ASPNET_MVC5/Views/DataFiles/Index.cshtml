@@ -32,11 +32,12 @@
             @Html.ActionLink("Data Type", "Index", new { Sorting_Order = ViewBag.SortingType })
         </th>
         <th>
-
+            Description
         </th>
         <th>
             @Html.ActionLink("Upload Date", "Index", new { Sorting_Order = ViewBag.SortingDate })
         </th>
+        <th></th>
         <th></th>
     </tr> 
 
@@ -56,16 +57,9 @@
                 @Html.DisplayFor(modelItem => item.UploadDate)
             </td>
             <td>
-                @{
-                    string DownloadURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/DataFiles/Download/" + item.Id;
-                }
-                <p><a class="btn btn-default" href=@DownloadURL>Download &raquo;</a></p>
+                @Html.ActionLink("Download", "Download", new { fileId = item.Id })
             </td>
-            <td>                
-                @{
-                    string DeleteURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/DataFiles/Download/" + item.Id;
-                }
-                <p><a class="btn btn-default" href=@DeleteURL>Download &raquo;</a></p>
+            <td>
                 @Html.ActionLink("Delete Me", "Delete", new { fileId = item.Id })
             </td>
         </tr>

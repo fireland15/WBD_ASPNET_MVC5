@@ -125,35 +125,65 @@ namespace WBD_ASPNET_MVC5.Controllers
                 return HttpNotFound();
             }
             
-            var model = new List<DataProjectListViewModel>();
+            var model = new DataProjectListViewModel();
+            model.data = new List<DataFile>();
+            model.project = project;
 
             var sd = db.DataFiles.ToList().Where(df => df.UploaderID == User.Identity.GetUserId());
-
             foreach (var w in sd) {
-                var x = new DataProjectListViewModel();
-                x.data.AddToProject = false;
-                x.data.datafile = w;
-                model.Add(x);
+                if (db.DataProjectAssociations.Find(w.Id, id) == null)
+                {
+                    model.data.Add(w);
+                }
+            }
+
+            if (!model.data.Any())
+            {
+                ViewBag.EmptyModel = "You have no files that are not already a part of this project. Upload more files then add to the project.";
             }
 
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult AddData(List<DataProjectListViewModel> model)
+        public ActionResult ViewProjectData(string id)
         {
-            foreach (var x in model) {
-                if (x.data.AddToProject == true) {
-                    var DPA = new DataProjectAssoc();
-                    DPA.ProjectId = x.project.Id;
-                    DPA.DataId = x.data.datafile.Id;
-                }
-
-              
-                //db.UserProjectAssoc.Add(UPA);
-                //db.SaveChanges();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return RedirectToAction("ViewProjectUsers", "ProjectPage", new { id = model.First().project.Id });
+            var project = db.Projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new DataProjectListViewModel();
+            model.data = new List<DataFile>();
+            model.project = project;
+
+            var sd = db.DataProjectAssociations.ToList().Where(df => df.ProjectId == project.Id);
+            foreach (var w in sd)
+            {
+                var x = db.DataFiles.Find(w.DataId);
+                model.data.Add(x);
+            }
+            return View(model);
+        }
+
+        public ActionResult LinkDataToProject(string id, string dataid)
+        {
+            var DPA = new DataProjectAssoc();
+            DPA.DataId = dataid;
+            DPA.ProjectId = id;
+
+            var exists = db.DataProjectAssociations.Find(DPA.DataId, DPA.ProjectId);
+            if (exists == null)
+            {
+                db.DataProjectAssociations.Add(DPA);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("ViewProjectData", "ProjectPage", new { id = id });
         }
     }
 }
