@@ -12,7 +12,7 @@ namespace WBD_ASPNET_MVC5.Models
         [Required]
         [Key]
         [Column(Order = 0)]
-        public int DataId { get; set; }
+        public string DataId { get; set; }
 
         [Required]
         [Key]
@@ -25,11 +25,23 @@ namespace WBD_ASPNET_MVC5.Models
         [Required]
         [Key]
         [Column(Order = 0)]
-        public int DataId { get; set; }
+        public string DataId { get; set; }
 
         [Required]
         [Key]
         [Column(Order = 1)]
         public string UserId { get; set; }
+    }
+
+    public class AttachData
+    {
+        public bool AddToProject { get; set; }
+        public DataFile datafile { get; set; }
+    }
+
+    public class DataProjectListViewModel
+    {
+        public Project project { get; set; }
+        public AttachData data { get; set; }
     }
 }

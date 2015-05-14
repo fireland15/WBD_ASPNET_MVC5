@@ -112,5 +112,48 @@ namespace WBD_ASPNET_MVC5.Controllers
 
             return View(PUVM);
         }
+
+        public ActionResult AddData(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var project = db.Projects.Find(id);
+            if (project == null)
+            {
+                return HttpNotFound();
+            }
+            
+            var model = new List<DataProjectListViewModel>();
+
+            var sd = db.DataFiles.ToList().Where(df => df.UploaderID == User.Identity.GetUserId());
+
+            foreach (var w in sd) {
+                var x = new DataProjectListViewModel();
+                x.data.AddToProject = 0;
+                x.data.datafile = w;
+                model.Add(x);
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddData(List<DataProjectListViewModel> model)
+        {
+            foreach (var x in model) {
+                if (x.data.AddToProject == true) {
+                    var DPA = new DataProjectAssoc();
+                    DPA.ProjectId = x.project.Id;
+                    DPA.DataId = x.data.datafile.Id;
+                }
+
+              
+                //db.UserProjectAssoc.Add(UPA);
+                //db.SaveChanges();
+            }
+            return RedirectToAction("ViewProjectUsers", "ProjectPage", new { id = model.First().project.Id });
+        }
     }
 }

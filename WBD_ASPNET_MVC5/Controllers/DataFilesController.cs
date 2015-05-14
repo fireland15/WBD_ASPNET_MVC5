@@ -27,13 +27,32 @@ namespace WBD_ASPNET_MVC5.Controllers
             UserManager = userManager;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string Sorting_Order)
         {
             var uID = User.Identity.GetUserId();
             if (uID != null)
             {
+                ViewBag.SortingName = String.IsNullOrEmpty(Sorting_Order) ? "Name_Description" : "";
+                ViewBag.SortingDate = Sorting_Order == "Upload_Date" ? "Date_Description" : "Date";
+                var fileList1 = from file in db.DataFiles select file;
+                switch (Sorting_Order)
+                {
+                    case "Name_Description":
+                        fileList1 = fileList1.OrderByDescending(file => file.DataName);
+                        break;
+                    case "Date_Enroll":
+                        fileList1 = fileList1.OrderBy(file => file.UploadDate);
+                        break;
+                    case "Date_Description":
+                        fileList1 = fileList1.OrderByDescending(file => file.UploadDate);
+                        break;
+                    default:
+                        fileList1 = fileList1.OrderBy(file => file.DataName);
+                        break;
+                }
                 var fileList = db.DataFiles.ToList().Where(datafile => datafile.UploaderID == uID);
-                return View(fileList);
+                //return View(fileList);
+                return View(fileList1);
             }
             return RedirectToAction("Login", "Account");
         }
