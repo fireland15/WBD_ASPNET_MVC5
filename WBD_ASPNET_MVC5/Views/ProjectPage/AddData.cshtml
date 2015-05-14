@@ -4,7 +4,7 @@
 }
 
 <h1>
-    Add Data To @Html.DisplayFor(model => model.First().project.ProjectName)
+    Add Data To 
 </h1>
 
 <h2>
@@ -38,7 +38,7 @@
             @Html.HiddenFor(modelItem => item.project.Id)
             <tr>
                 <td>
-                    @Html.CheckBoxFor(modelItem => item.data.AddToProject, new { @checked = "checked" })
+                    @Html.CheckBoxFor(modelItem => item.data.AddToProject, new { @checked = true })
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.data.datafile.DataName)

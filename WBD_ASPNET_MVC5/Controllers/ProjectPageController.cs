@@ -131,7 +131,7 @@ namespace WBD_ASPNET_MVC5.Controllers
 
             foreach (var w in sd) {
                 var x = new DataProjectListViewModel();
-                x.data.AddToProject = 0;
+                x.data.AddToProject = false;
                 x.data.datafile = w;
                 model.Add(x);
             }

@@ -26,10 +26,13 @@
     </tr>*@
     <tr>
         <th>
-            @Html.ActionLink("First Name", "Index", new { Sorting_Order = ViewBag.SortingName })
+            @Html.ActionLink("File Name", "Index", new { Sorting_Order = ViewBag.SortingName })
         </th>
         <th>
-            Last Name
+            @Html.ActionLink("Data Type", "Index", new { Sorting_Order = ViewBag.SortingType })
+        </th>
+        <th>
+
         </th>
         <th>
             @Html.ActionLink("Upload Date", "Index", new { Sorting_Order = ViewBag.SortingDate })
