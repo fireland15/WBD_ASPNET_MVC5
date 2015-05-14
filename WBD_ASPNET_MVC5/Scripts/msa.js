@@ -13167,7 +13167,7 @@ module.exports = ImportMenu = MenuBuilder.extend({
     })(this));
     this.addNode("From file", (function(_this) {
       return function() {
-        return _this.msa.u.file.uploader.click();
+        return uploader.click();
       };
     })(this));
     this.addNode("Drag & Drop", (function(_this) {
