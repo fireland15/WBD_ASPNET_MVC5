@@ -16,9 +16,6 @@
     <table class="table">
         <tr>
             <th>
-                Add?
-            </th>
-            <th>
                 @Html.DisplayName("Name")
             </th>
             <th>
@@ -30,7 +27,9 @@
             <th>
                 @Html.DisplayName("Upload Date")
             </th>
-            <th></th>
+            <th>
+
+            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -38,19 +37,19 @@
             @Html.HiddenFor(modelItem => item.project.Id)
             <tr>
                 <td>
-                    @Html.CheckBoxFor(modelItem => item.data.AddToProject, new { @checked = true })
+                    @Html.DisplayFor(modelItem => item.data.DataName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.data.datafile.DataName)
+                    @Html.DisplayFor(modelItem => item.data.DataCategory)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.data.datafile.DataCategory)
+                    @Html.DisplayFor(modelItem => item.data.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.data.datafile.Description)
+                    @Html.DisplayFor(modelItem => item.data.UploadDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.data.datafile.UploadDate)
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
                 </td>
             </tr>
         }
