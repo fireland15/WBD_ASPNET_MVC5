@@ -143,7 +143,7 @@ namespace WBD_ASPNET_MVC5.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddData(DataProjectListViewModel model)
+        public ActionResult AddData([Bind(Include = "project,data")]DataProjectListViewModel model)
         {
             foreach (var x in model.data) {
                 if (x.AddToProject == true) {
