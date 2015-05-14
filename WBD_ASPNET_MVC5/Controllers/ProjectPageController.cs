@@ -162,10 +162,20 @@ namespace WBD_ASPNET_MVC5.Controllers
             model.project = project;
 
             var sd = db.DataProjectAssociations.ToList().Where(df => df.ProjectId == project.Id);
-            foreach (var w in sd)
+            if (sd != null)
             {
-                var x = db.DataFiles.Find(w.DataId);
-                model.data.Add(x);
+                foreach (var w in sd)
+                {
+                    var x = db.DataFiles.Find(w.DataId);
+                    if (x != null)
+                    {
+                        model.data.Add(x);
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("Details", "ProjectPage", new { id = id });
             }
             return View(model);
         }

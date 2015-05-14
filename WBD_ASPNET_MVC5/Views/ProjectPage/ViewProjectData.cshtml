@@ -31,26 +31,27 @@
         </th>
     </tr>
 
-    @foreach (var item in Model.data)
-    {
-        @Html.HiddenFor(model => model.project.Id)
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataCategory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UploadDate)
-            </td>
-            <td>
-                @Html.ActionLink("Download", "Download", "DataFiles", new { fileId = item.Id }, null)
-            </td>
+    @if (Model.data.Any()) {
+        for (int i = 0; i < Model.data.Count; i++ )
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.data[i].DataName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.data[i].DataCategory)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.data[i].Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.data[i].UploadDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Download", "Download", "DataFiles", new { fileId = Model.data[i].Id }, null)
+                </td>
 
-        </tr>
+            </tr>
+        }
     }
 </table>
