@@ -1,7 +1,16 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model IEnumerable<string>
 
-<p>
-<a href="@(Url.Content("~/FILES/MSA.txt"))"> naem</a>
-<p/>
+<html>
+    <head>
+        <style type="text.css"></style>
+    </head>
+    <body>
+        <pre style="word-wrap: break-word; white-space: pre-wrap;">
+            
+        @foreach (var line in Model) {
+            @line
+        }
+                               
+</pre>
+    </body>
+</html>

@@ -123,6 +123,8 @@ namespace WBD_ASPNET_MVC5.Controllers
             string filepath = Server.MapPath("~") + "/FILES/MSA.txt";
             string content = string.Empty;
 
+            content += "<html><head><style type=\"text/css\"></style></head><body><pre style=\"word-wrap: break-word; white-space: pre-wrap; font: consola;\">";
+
             try
             {
                 using (var stream = new StreamReader(filepath))
@@ -131,11 +133,13 @@ namespace WBD_ASPNET_MVC5.Controllers
                     content = content.Replace(System.Environment.NewLine, "<br/>");
                 }
             }
+
+                
             catch (Exception exc)
             {
                 return Content("Uh oh!");
             }
-
+            content+="</pre></body></html>";
             return Content(content);
         }
 	}
