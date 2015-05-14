@@ -124,39 +124,36 @@ namespace WBD_ASPNET_MVC5.Controllers
             {
                 return HttpNotFound();
             }
-
-            var model = new DataProjectListViewModel();
-            model.project = project;
+            
+            var model = new List<DataProjectListViewModel>();
 
             var sd = db.DataFiles.ToList().Where(df => df.UploaderID == User.Identity.GetUserId());
 
-            model.data = new List<AttachData>();
-
             foreach (var w in sd) {
-                var x = new AttachData();
-                x.AddToProject = false;
-                x.datafile = w;
-                model.data.Add(x);
+                var x = new DataProjectListViewModel();
+                x.data.AddToProject = 0;
+                x.data.datafile = w;
+                model.Add(x);
             }
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult AddData([Bind(Include = "project,data")]DataProjectListViewModel model)
+        public ActionResult AddData(List<DataProjectListViewModel> model)
         {
-            foreach (var x in model.data) {
-                if (x.AddToProject == true) {
+            foreach (var x in model) {
+                if (x.data.AddToProject == true) {
                     var DPA = new DataProjectAssoc();
-                    DPA.ProjectId = model.project.Id;
-                    DPA.DataId = x.datafile.Id;
+                    DPA.ProjectId = x.project.Id;
+                    DPA.DataId = x.data.datafile.Id;
                 }
 
               
                 //db.UserProjectAssoc.Add(UPA);
                 //db.SaveChanges();
             }
-            return RedirectToAction("ViewProjectUsers", "ProjectPage", new { id = model.project.Id });
+            return RedirectToAction("ViewProjectUsers", "ProjectPage", new { id = model.First().project.Id });
         }
     }
 }
