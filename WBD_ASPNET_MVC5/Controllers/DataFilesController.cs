@@ -117,5 +117,26 @@ namespace WBD_ASPNET_MVC5.Controllers
             var file = db.DataFiles.Find(fileId);
             return File(file.FileReference, System.IO.Path.GetExtension(file.FileReference).ToLower(), file.DataName + System.IO.Path.GetExtension(file.FileReference).ToLower());
         }
+
+        public ActionResult View()
+        {
+            string filepath = Server.MapPath("~") + "/FILES/MSA.txt";
+            string content = string.Empty;
+
+            try
+            {
+                using (var stream = new StreamReader(filepath))
+                {
+                    content = stream.ReadToEnd();
+                    content = content.Replace(System.Environment.NewLine, "<br/>");
+                }
+            }
+            catch (Exception exc)
+            {
+                return Content("Uh oh!");
+            }
+
+            return Content(content);
+        }
 	}
 }

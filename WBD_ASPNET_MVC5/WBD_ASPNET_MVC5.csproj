@@ -249,6 +249,7 @@
     <Content Include="Views\Java\Index.cshtml" />
     <Content Include="Views\ProjectPage\AddData.cshtml" />
     <Content Include="Views\ProjectPage\ViewProjectData.cshtml" />
+    <Content Include="Views\DataFiles\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

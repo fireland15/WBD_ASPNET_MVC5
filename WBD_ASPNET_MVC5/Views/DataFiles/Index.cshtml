@@ -60,6 +60,9 @@
                 @Html.ActionLink("Download", "Download", new { fileId = item.Id })
             </td>
             <td>
+                @Html.ActionLink("View", "View", new { fileId = item.Id })
+            </td>
+            <td>
                 @Html.ActionLink("Delete Me", "Delete", new { fileId = item.Id })
             </td>
         </tr>
