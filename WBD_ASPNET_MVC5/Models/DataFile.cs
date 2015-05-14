@@ -25,7 +25,7 @@ namespace WBD_ASPNET_MVC5.Models
 
         [Required]
         [StringLength(100)]
-        [Display(Name = "Data Type")]
+        [Display(Name = "Data Category")]
         public string DataCategory { get; set; }
 
         [StringLength(140)]
