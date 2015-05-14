@@ -50,8 +50,11 @@
                 <td>
                     @Html.ActionLink("Download", "Download", "DataFiles", new { fileId = Model.data[i].Id }, null)
                 </td>
-
+                <td>
+                    @Html.ActionLink("Remove", "UnlinkDataFromProject", new { id = Model.project.Id, dataid = Model.data[i].Id })
+                </td>
             </tr>
         }
     }
+    @ViewBag.EmptyProject
 </table>

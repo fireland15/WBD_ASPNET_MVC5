@@ -175,7 +175,7 @@ namespace WBD_ASPNET_MVC5.Controllers
             }
             else
             {
-                return RedirectToAction("Details", "ProjectPage", new { id = id });
+                ViewBag.EmptyProject = "Oh no! You have no data in this project. Click \"Add New Data\" to fix that";
             }
             return View(model);
         }
@@ -190,6 +190,22 @@ namespace WBD_ASPNET_MVC5.Controllers
             if (exists == null)
             {
                 db.DataProjectAssociations.Add(DPA);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("ViewProjectData", "ProjectPage", new { id = id });
+        }
+
+        public ActionResult UnlinkDataFromProject(string id, string dataid)
+        {
+            var DPA = new DataProjectAssoc();
+            DPA.DataId = dataid;
+            DPA.ProjectId = id;
+
+            var exists = db.DataProjectAssociations.Find(DPA.DataId, DPA.ProjectId);
+            if (exists != null)
+            {
+                db.DataProjectAssociations.Remove(db.DataProjectAssociations.Find(DPA.DataId, DPA.ProjectId));
                 db.SaveChanges();
             }
 
