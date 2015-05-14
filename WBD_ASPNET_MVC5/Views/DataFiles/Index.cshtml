@@ -9,7 +9,7 @@
     @Html.ActionLink("Upload", "Upload")
 </p>
 <table class="table">
-    <tr>
+    @*<tr>
         <th>
             @Html.DisplayNameFor(model => model.DataName)
         </th>
@@ -23,7 +23,19 @@
             @Html.DisplayNameFor(model => model.UploadDate)
         </th>
         <th></th>
-    </tr>
+    </tr>*@
+    <tr>
+        <th>
+            @Html.ActionLink("First Name", "Index", new { Sorting_Order = ViewBag.SortingName })
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            @Html.ActionLink("Upload Date", "Index", new { Sorting_Order = ViewBag.SortingDate })
+        </th>
+        <th></th>
+    </tr> 
 
     @foreach (var item in Model)
     {
