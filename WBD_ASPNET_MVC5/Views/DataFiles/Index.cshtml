@@ -41,9 +41,16 @@
                 @Html.DisplayFor(modelItem => item.UploadDate)
             </td>
             <td>
-                @Html.ActionLink("Download", "Download", new { fileId = item.Id })
+                @{
+                    string DownloadURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/DataFiles/Download/" + item.Id;
+                }
+                <p><a class="btn btn-default" href=@DownloadURL>Download &raquo;</a></p>
             </td>
-            <td>
+            <td>                
+                @{
+                    string DeleteURL = "http://" + Request.Url.Host + ":" + Request.Url.Port + "/DataFiles/Download/" + item.Id;
+                }
+                <p><a class="btn btn-default" href=@DeleteURL>Download &raquo;</a></p>
                 @Html.ActionLink("Delete Me", "Delete", new { fileId = item.Id })
             </td>
         </tr>
