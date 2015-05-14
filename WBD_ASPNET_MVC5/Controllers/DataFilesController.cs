@@ -38,7 +38,8 @@ namespace WBD_ASPNET_MVC5.Controllers
                 ViewBag.SortingName = String.IsNullOrEmpty(Sorting_Order) ? "Name_Description" : "";
                 ViewBag.SortingDate = Sorting_Order == "Upload_Date" ? "Date_Description" : "Date";
                 ViewBag.SortingType = String.IsNullOrEmpty(Sorting_Order) ? "Data_Type" : "";
-                var fileList1 = from file in db.DataFiles select file;
+                //var fileList1 = from file in db.DataFiles select file;
+                var fileList1 = db.DataFiles.ToList().Where(datafile => datafile.UploaderID == uID);
                 switch (Sorting_Order)
                 {
                     case "Name_Description":
@@ -57,7 +58,6 @@ namespace WBD_ASPNET_MVC5.Controllers
                         fileList1 = fileList1.OrderBy(file => file.DataName);
                         break;
                 }
-                //var fileList = db.DataFiles.ToList().Where(datafile => datafile.UploaderID == uID);
                 //return View(fileList);
                 return View(fileList1);
             }
