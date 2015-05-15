@@ -2,6 +2,9 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,7 +38,8 @@ namespace WBD_ASPNET_MVC5.Controllers
                 ViewBag.SortingName = String.IsNullOrEmpty(Sorting_Order) ? "Name_Description" : "";
                 ViewBag.SortingDate = Sorting_Order == "Upload_Date" ? "Date_Description" : "Date";
                 ViewBag.SortingType = String.IsNullOrEmpty(Sorting_Order) ? "Data_Type" : "";
-                var fileList1 = from file in db.DataFiles select file;
+                //var fileList1 = from file in db.DataFiles select file;
+                var fileList1 = db.DataFiles.ToList().Where(datafile => datafile.UploaderID == uID);
                 switch (Sorting_Order)
                 {
                     case "Name_Description":
@@ -54,7 +58,6 @@ namespace WBD_ASPNET_MVC5.Controllers
                         fileList1 = fileList1.OrderBy(file => file.DataName);
                         break;
                 }
-                var fileList = db.DataFiles.ToList().Where(datafile => datafile.UploaderID == uID);
                 //return View(fileList);
                 return View(fileList1);
             }
@@ -67,6 +70,7 @@ namespace WBD_ASPNET_MVC5.Controllers
             data.Id = Guid.NewGuid().ToString();
             data.UploadDate = DateTime.Now;
             data.FileReference = "aasdasda";
+            data.ImageReference = "aasdasda";
             data.UploaderID = User.Identity.GetUserId();
             return View(data);
         }
@@ -75,7 +79,7 @@ namespace WBD_ASPNET_MVC5.Controllers
         // POST: /DataFiles/
         [HttpPost]
         //public async Task<ActionResult> Index([Bind(Include = "Id,DataName,FileReference,DataCategory,Description,UploadDate")]DataFile datafile, HttpPostedFileBase upload)
-        public ActionResult Upload([Bind(Include = "Id,DataName,FileReference,DataCategory,Description,UploadDate,UploaderID")]DataFile datafile, HttpPostedFileBase upload)
+        public ActionResult Upload([Bind(Include = "Id,DataName,FileReference,DataCategory,Description,UploadDate,UploaderID,ImageReference")]DataFile datafile, HttpPostedFileBase upload)
         {    
             if (ModelState.IsValid)
             {
@@ -93,10 +97,47 @@ namespace WBD_ASPNET_MVC5.Controllers
                     //System.IO.File.WriteAllBytes("c:/users/i7/desktop/test.jpeg", filebytes);
                     upload.SaveAs(Server.MapPath("~").ToString() + "/FILES/" + FileName);
                     datafile.FileReference = Server.MapPath("~").ToString() + "/FILES/" + FileName;
+                    datafile.ImageReference = "~/FILES/" + FileName;
                 }
                 //db.DataFiles.Add(DataFile)
                 db.DataFiles.Add(datafile);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (DbEntityValidationResult item in ex.EntityValidationErrors)
+                    {
+                        // Get entry
+
+                        DbEntityEntry entry = item.Entry;
+                        string entityTypeName = entry.Entity.GetType().Name;
+
+                        // Display or log error messages
+
+                        foreach (DbValidationError subItem in item.ValidationErrors)
+                        {
+                            string message = string.Format("Error '{0}' occurred in {1} at {2}",
+                                     subItem.ErrorMessage, entityTypeName, subItem.PropertyName);
+                            Console.WriteLine(message);
+                        }
+                        switch (entry.State)
+                        {
+                            case EntityState.Added:
+                                entry.State = EntityState.Detached;
+                                break;
+                            case EntityState.Modified:
+                                entry.CurrentValues.SetValues(entry.OriginalValues);
+                                entry.State = EntityState.Unchanged;
+                                break;
+                            case EntityState.Deleted:
+                                entry.State = EntityState.Unchanged;
+                                break;
+                        }
+                        db.SaveChanges();
+                    }
+                }
                 //return RedirectToAction("Index");
             }
             //return RedirectToAction("Projects", "Accounts");

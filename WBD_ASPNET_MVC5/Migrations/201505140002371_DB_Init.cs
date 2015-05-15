@@ -14,6 +14,7 @@ namespace WBD_ASPNET_MVC5.Migrations
                         Id = c.String(nullable: false, maxLength: 128),
                         DataName = c.String(nullable: false, maxLength: 100),
                         FileReference = c.String(nullable: false, maxLength: 100),
+                        //ImageReference = c.String(nullable: false, maxLength: 100),
                         DataCategory = c.String(nullable: false, maxLength: 100),
                         Description = c.String(maxLength: 140),
                         UploadDate = c.DateTime(nullable: false),

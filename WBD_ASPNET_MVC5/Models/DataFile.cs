@@ -25,6 +25,11 @@ namespace WBD_ASPNET_MVC5.Models
 
         [Required]
         [StringLength(100)]
+        [Display(Name = "Image Reference")]
+        public string ImageReference { get; set; }
+
+        [Required]
+        [StringLength(100)]
         [Display(Name = "Data Category")]
         public string DataCategory { get; set; }
 
